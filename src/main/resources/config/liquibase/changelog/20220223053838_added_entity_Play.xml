@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Play.
+    -->
+    <changeSet id="20220223053838-1" author="elton">
+        <createTable tableName="play">
+            <column name="id" type="varchar(255)" autoIncrement="false">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="score" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="start" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="end" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="errors" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="player_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            
+        </createTable>
+        <dropDefaultValue tableName="play" columnName="start" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="play" columnName="end" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    
+    <changeSet id="20220223053838-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/play.csv"
+                  separator=";"
+                  tableName="play"
+                  usePreparedStatements="true">
+            <column name="id" type="string"/>
+            <column name="score" type="string"/>
+            <column name="start" type="date"/>
+            <column name="end" type="date"/>
+            <column name="errors" type="numeric"/>
+            <column name="player_id" type="numeric"/>
+           
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Round.
+    -->
+    <changeSet id="20220223053839-2" author="elton">
+
+        <addForeignKeyConstraint baseColumnNames="play_id"
+                                 baseTableName="round"
+                                 constraintName="fk_round__play_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="play"/>
+
+        <addForeignKeyConstraint baseColumnNames="movie_one_id"
+                                 baseTableName="round"
+                                 constraintName="fk_round__movie_one_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="movie"/>
+
+        <addForeignKeyConstraint baseColumnNames="movie_two_id"
+                                 baseTableName="round"
+                                 constraintName="fk_round__movie_two_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="movie"/>
+    </changeSet>
+</databaseChangeLog>
